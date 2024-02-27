@@ -10,6 +10,7 @@ config={
     'env_kwargs': {'continuous':False,'domain_randomize':False},
     'save_freq':2e4,
     'n_timesteps':4e6,
+    'conf-file ':'configs/a2c.yml'
 
 }
 
