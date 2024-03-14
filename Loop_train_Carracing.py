@@ -14,8 +14,8 @@ from stable_baselines3.common.utils import set_random_seed
 
 # Register custom envs
 import rl_zoo3.import_envs  # noqa: F401 pytype: disable=import-error
-from rl_zoo3.exp_manager import ExperimentManager
-from rl_zoo3.utils import ALGOS, StoreDict
+from rl_zoo_local.rl_zoo3.exp_manager import ExperimentManager
+from rl_zoo_local.rl_zoo3.utils import ALGOS, StoreDict
 
 
 def train(args) -> None:
@@ -152,7 +152,7 @@ def train(args) -> None:
     )
 
     args = parser.parse_args(args=args)
-
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!????',args)
     # Going through custom gym packages to let them register in the global registory
     for env_module in args.gym_packages:
         importlib.import_module(env_module)
@@ -271,20 +271,22 @@ def train(args) -> None:
 
 if __name__ == "__main__":
     config={
-        '--env':'CarRacing-v2',
-        '--env-kwargs':'continuous:False',
-        '--log-folder':'GymPlayground//trained_model',
-        '--conf':'GymPlayground/configs/a2c.yml',
-        '--save-freq':'20',
-        '--n-timesteps':'40',
-        '--algo':'a2c',
+        #'--env':'CarRacing-v2',
+        #'--env-kwargs':'continuous:False',
+        #'--log-folder':'/trained_model',
+        #'--conf':'configs/a2c.yml',
+        #'--save-freq':'10000',
+        #'--n-timesteps':'1000000',
+        #'--algo':'a2c',
+        '--trained-agent':''
     }
-    for enti,ent_coef in enumerate([0., 0.0001,0.01]):
-        config.update({'-params':f'ent_coef:{ent_coef}'})
+    
+    for enti,ent_coef in enumerate([0., 0.0001, 0.01]):
+        #config.update({'-params':f'ent_coef:{ent_coef}'})
         for seedi in range(10):
-            config.update({'--seed':str(seedi)})
+            #config.update({'--seed':str(seedi)})
             exp_id=100+enti*10+seedi
-            config.update({'--study-name':str(exp_id)})
+            #config.update({'--study-name':str(exp_id)})
 
             args=['-P']
             for key,value in config.items():
@@ -292,4 +294,5 @@ if __name__ == "__main__":
                 args.append(value)
             print(f"Args before parse_args: {args}")
             print(f'-------Start Training-----')
-            train(args)
+            #train(args)
+            train([])
