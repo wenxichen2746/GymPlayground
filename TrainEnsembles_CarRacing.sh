@@ -17,7 +17,7 @@ for ent_coef in 0.; do
         exp_id=$((100 + enti* 10 + seed))
 
         # Construct command
-        command="python3 -m rl_zoo3.train -P --env $env --env-kwargs $env_kwargs --n-eval-envs 10000 --log-folder $log_folder --conf $conf --save-freq $save_freq --n-timesteps $n_timesteps --algo $algo -params ent_coef:$ent_coef --seed $seed --study-name $exp_id"
+        command="python3 -m rl_zoo3.train -P --env $env --env-kwargs $env_kwargs --n-eval-envs 20000 --log-folder $log_folder --conf $conf --save-freq $save_freq --n-timesteps $n_timesteps --algo $algo -params ent_coef:$ent_coef --seed $seed --study-name $exp_id"
         
         # Print the command (for debugging purposes)
         echo "Executing: $command"
